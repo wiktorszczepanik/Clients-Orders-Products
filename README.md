@@ -18,7 +18,7 @@ note: change Database name in connection string
 - [EF] `Microsoft.EntityFrameworkCore.Design` 9.0.16
 - [EF] `Microsoft.EntityFrameworkCore.SqlServer` 9.0.16
 
-#### 4. **Data/**AppDbContext.cs 
+#### 4. **Data/** AppDbContext.cs 
 
 Db context init example
 ```C#
@@ -52,19 +52,19 @@ public ICollection<Order> Orders { get; set; } = [];
 public class ProductOrder {...}
 ```
 
-- PK -> [Key]
+- PK
 ```C#
 [Key]
 public int Id { get; set; }
 ```
 
-- PK * 2 -> [PrimaryKey(nameof(ProductId), nameof(OrderId))]
+- PK * 2
 ```C#
 [PrimaryKey(nameof(ProductId), nameof(OrderId))]
 public class ProductOrder {...}
 ```
 
-- FK -> [ForeignKey(nameof(ClientId))]
+- FK
 ```C#
 public int ProductId { get; set; }
 
@@ -72,13 +72,13 @@ public int ProductId { get; set; }
 public Product Product { get; set; }
 ```
 
-- nvarchar(50) -> [MaxLength(50)]
+- nvarchar(50)
 ```C#
 [MaxLength(50)]
 private string FirstName { get; set; } = string.Empty;
 ```
 
-- numeric(10, 2) -> [Column(TypeName = "decimal(10, 2)")]
+- numeric(10, 2)
 ```C#
 [Column(TypeName = "numeric(10, 2)")]
 public decimal Price { get; set; }
@@ -152,3 +152,4 @@ $ dotnet ef database update
 public class OrdersController : ControllerBase {...}
 ```
 
+...
