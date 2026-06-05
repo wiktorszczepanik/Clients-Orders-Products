@@ -1,11 +1,11 @@
 ![diagram.png](assets/diagram.png)
 
-## 1. New Solution
+### 1. New Solution
 - git
 - SDK 9.0
 - Web API
 
-## 2. `appsettings.json`
+### 2. `appsettings.json`
 
 > Zmień nazwę bazy danych w connection stringu.
 
@@ -16,13 +16,13 @@
   }
 ```
 
-## 3. Pakiety NuGet
+### 3. Pakiety NuGet
 ```
 [EF] Microsoft.EntityFrameworkCore.Design 9.0.16
 [EF] Microsoft.EntityFrameworkCore.SqlServer 9.0.16
 ```
 
-## 4. `Data/AppDbContext.cs`
+### 4. `Data/AppDbContext.cs`
 
 Db context init example
 ```C#
@@ -39,9 +39,9 @@ public class AppDbContext : DbContext {
 }
 ```
 
-## 5. `Entities/SomeEntity.cs`
+### 5. `Entities/SomeEntity.cs`
 
-### Przykładowe pola
+#### Przykładowe pola
 ```C#
 private int Id { get; set; }
 private string FirstName { get; set; } = string.Empty;
@@ -49,7 +49,7 @@ public Order Order { get; set; }
 public ICollection<Order> Orders { get; set; } = [];
 ```
 
-### Adnotacje
+#### Adnotacje
 - Table name -> [Table("XYZ")]
 ```C#
 // Nazwa tabeli
@@ -83,7 +83,7 @@ public decimal Price { get; set; }
 public DateTime? FulfilledAt { get; set; }
 ```
 
-## 6. `Program.cs` - rejestracja DbContext
+### 6. `Program.cs` - rejestracja DbContext
 
 Example for SQL server
 ```C#
@@ -92,7 +92,7 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 });
 ```
 
-## 7. Migracje - inicjalizacja
+### 7. Migracje - inicjalizacja
 
 > Jeśli brakuje `dotnet-ef`:
 > ```bash
@@ -112,7 +112,7 @@ Inne komendy
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-## 8. `AppDbContext.cs` - dane seed
+### 8. `AppDbContext.cs` - dane seed
 
 ```C#
 protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -126,7 +126,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder) {
 }
 ```
 
-## 9. Migracje - seed
+### 9. Migracje - seed
 
 Seed data
 ```
@@ -136,7 +136,7 @@ $ dotnet ef migrations add Seed
 $ dotnet ef database update
 ```
 
-## 10. DTOs - przykład
+### 10. DTOs - przykład
 
 ```C#
 public int Id { get; set; }
@@ -146,7 +146,7 @@ public List<ProductDto> Products { get; set; } = null!;
 ```
 
 
-## 11. `Services/IDbService.cs` + `DbService.cs`
+### 11. `Services/IDbService.cs` + `DbService.cs`
 
 IDbService
 ```C#
@@ -174,16 +174,16 @@ builder.Services.AddScoped<IDbService, DbService>();
 // builder.Services.AddDbContext<AppDbContext>(options => { ... }
 ```
 
-## 12. `Exceptions/NotFoundException.cs`
+### 12. `Exceptions/NotFoundException.cs`
 
 ```C#
 namespace ClientsOrdersProducts.Exceptions;
 public class NotFoundException : Exception {}
 ```
 
-## 13. `Controllers/OrdersController.cs` - adnotacje i deklaracje
+### 13. `Controllers/OrdersController.cs` - adnotacje i deklaracje
 
-### Przykładowa klasa
+#### Przykładowa klasa
 
 ```csharp
 [ApiController]
@@ -191,7 +191,7 @@ public class NotFoundException : Exception {}
 public class PcsController : ControllerBase
 ```
 
-### Przykładowe endpointy
+#### Przykładowe endpointy
 
 ```C#
 [HttpGet]
@@ -244,7 +244,7 @@ public async Task Delete(int id)
 public IActionResult Delete(int id)
 ```
 
-### Źródła parametrów
+#### Źródła parametrów
 
 ```C#
 ([FromQuery] string? search)       // query string: ?search=abc
@@ -255,7 +255,7 @@ public IActionResult Delete(int id)
 (PostComputerDto dto)              // domyślnie [FromBody] dla POST/PUT
 ```
 
-### Zwracane odpowiedzi
+#### Zwracane odpowiedzi
 
 ```C#
 return Ok(data);                                      // 200
