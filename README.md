@@ -24,7 +24,7 @@
 
 ### 4. `Data/AppDbContext.cs`
 
-Db context init example
+Przykład Db context
 ```C#
 public class AppDbContext : DbContext {
     
@@ -50,7 +50,7 @@ public ICollection<Order> Orders { get; set; } = [];
 ```
 
 #### Adnotacje
-- Table name -> [Table("XYZ")]
+
 ```C#
 // Nazwa tabeli
 [Table("Product_Order")]
@@ -85,7 +85,8 @@ public DateTime? FulfilledAt { get; set; }
 
 ### 6. `Program.cs` - rejestracja DbContext
 
-Example for SQL server
+Przykład dla SQL servera
+
 ```C#
 builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
