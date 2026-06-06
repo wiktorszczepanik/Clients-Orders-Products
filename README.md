@@ -102,6 +102,8 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 
 Inicjalizacja bez seed data
 
+> Utwórz wcześniej katalog `Migrations/`
+
 ```bash
 $ cd ProjectName/ProjectName/
 $ dotnet ef migrations add Init
@@ -132,7 +134,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder) {
 Seed data
 ```
 $ cd ProjectName/ProjectName/
-$ mkdir Migrations/
 $ dotnet ef migrations add Seed
 $ dotnet ef database update
 ```
