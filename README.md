@@ -22,24 +22,7 @@
 [EF] Microsoft.EntityFrameworkCore.SqlServer 9.0.16
 ```
 
-### 4. `Data/AppDbContext.cs`
-
-Przykład Db context
-```C#
-public class AppDbContext : DbContext {
-    
-    protected AppDbContext() {}
-
-    public AppDbContext(DbContextOptions options) : base(options) {}
-
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<Order> Orders { get; set; }
-    ...
-    
-}
-```
-
-### 5. `Entities/SomeEntity.cs`
+### 4. `Entities/SomeEntity.cs`
 
 #### Przykładowe pola
 ```C#
@@ -83,6 +66,23 @@ public decimal Price { get; set; }
 public DateTime? FulfilledAt { get; set; }
 ```
 
+### 5. `Data/AppDbContext.cs`
+
+Przykład Db context
+```C#
+public class AppDbContext : DbContext {
+    
+    protected AppDbContext() {}
+
+    public AppDbContext(DbContextOptions options) : base(options) {}
+
+    public DbSet<Client> Clients { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    ...
+    
+}
+```
+
 ### 6. `Program.cs` - rejestracja DbContext
 
 Przykład dla SQL servera
@@ -101,8 +101,6 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 > ```
 
 Inicjalizacja bez seed data
-
-> Utwórz wcześniej katalog `Migrations/`
 
 ```bash
 $ cd ProjectName/ProjectName/
